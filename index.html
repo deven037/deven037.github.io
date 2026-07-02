@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deven Choudhary — SDET & Automation Engineer</title>
+  <meta name="description" content="Deven Choudhary — SDET & Automation Engineer. Playwright, Selenium, AI-powered test automation frameworks." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+/* ============================================================
+   Deven Choudhary — Portfolio
+   Dark, modern, animated. Zero dependencies.
+   ============================================================ */
+
+:root {
+  --bg: #07090f;
+  --bg-soft: #0c101a;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-2: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.09);
+  --text: #e8ecf4;
+  --text-dim: #9aa4b8;
+  --accent: #22d3ee;      /* cyan */
+  --accent-2: #a78bfa;    /* violet */
+  --accent-3: #34d399;    /* emerald */
+  --grad: linear-gradient(120deg, var(--accent), var(--accent-2));
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --radius: 18px;
+  --nav-h: 68px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: rgba(34, 211, 238, 0.35); }
+
+/* ---------- Background layers ---------- */
+.bg-grid {
+  position: fixed; inset: 0; z-index: -3;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, black 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, black 35%, transparent 100%);
+}
+
+.blob {
+  position: fixed; z-index: -2; border-radius: 50%;
+  filter: blur(110px); opacity: 0.35; pointer-events: none;
+  animation: drift 22s ease-in-out infinite alternate;
+}
+.blob-1 { width: 480px; height: 480px; top: -140px; left: -120px; background: radial-gradient(circle, #164e63, transparent 70%); }
+.blob-2 { width: 560px; height: 560px; bottom: -200px; right: -160px; background: radial-gradient(circle, #3b0764, transparent 70%); animation-delay: -11s; }
+
+@keyframes drift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(70px, 50px) scale(1.15); }
+}
+
+.cursor-glow {
+  position: fixed; z-index: -1; width: 520px; height: 520px;
+  border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(34,211,238,0.07), transparent 65%);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s;
+  left: 50vw; top: 30vh;
+}
+
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: var(--grad); z-index: 100;
+  box-shadow: 0 0 12px rgba(34,211,238,0.7);
+}
+
+/* ---------- Nav ---------- */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(7, 9, 15, 0.65);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+.nav.scrolled { border-bottom-color: var(--border); }
+
+.nav-inner {
+  max-width: 1160px; margin: 0 auto; height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px;
+}
+
+.logo {
+  font-family: var(--font-mono); font-weight: 600; font-size: 1.25rem;
+  color: var(--text); text-decoration: none; letter-spacing: 1px;
+}
+.logo-bracket { color: var(--accent); }
+
+.nav-links { display: flex; gap: 6px; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--text-dim); text-decoration: none; font-size: 0.92rem; font-weight: 500;
+  padding: 8px 14px; border-radius: 10px; transition: color 0.25s, background 0.25s;
+}
+.nav-links a:hover { color: var(--text); background: var(--surface-2); }
+.nav-cta {
+  color: #06222a !important;
+  background: var(--grad) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 18px rgba(34,211,238,0.35);
+}
+.nav-cta:hover { filter: brightness(1.1); }
+
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 8px; }
+.nav-toggle span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: calc(var(--nav-h) + 40px) 24px 60px;
+  position: relative;
+}
+.hero-content {
+  max-width: 1160px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-3);
+  border: 1px solid rgba(52,211,153,0.3); border-radius: 999px;
+  padding: 6px 14px; margin-bottom: 22px; background: rgba(52,211,153,0.06);
+}
+.status-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--accent-3);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.55); }
+  50% { box-shadow: 0 0 0 7px rgba(52,211,153,0); }
+}
+
+.hero-title {
+  font-family: var(--font-display); font-size: clamp(2.4rem, 5.4vw, 4.2rem);
+  line-height: 1.06; font-weight: 700; letter-spacing: -0.02em;
+}
+.hero-title > span { display: block; }
+.hero-name {
+  background: linear-gradient(120deg, #fff 20%, var(--accent) 55%, var(--accent-2) 90%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  background-size: 200% auto;
+  animation: shine 6s linear infinite;
+}
+@keyframes shine { to { background-position: 200% center; } }
+
+.hero-role {
+  font-family: var(--font-mono); font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+  font-weight: 500; color: var(--text-dim); margin-top: 18px; min-height: 1.6em;
+}
+.typed { color: var(--accent); }
+.typed-cursor { color: var(--accent); animation: blink 0.9s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.hero-sub { margin-top: 20px; max-width: 520px; color: var(--text-dim); font-size: 1.05rem; }
+.hero-sub strong { color: var(--text); font-weight: 600; }
+
+.hero-actions { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 26px; border-radius: 12px; text-decoration: none;
+  font-weight: 600; font-size: 0.95rem; font-family: var(--font-body);
+  transition: transform 0.25s, box-shadow 0.25s, filter 0.25s, background 0.25s;
+}
+.btn-primary {
+  background: var(--grad); color: #06222a;
+  box-shadow: 0 6px 24px rgba(34,211,238,0.35);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(34,211,238,0.5); }
+.btn-arrow { transition: transform 0.25s; }
+.btn-primary:hover .btn-arrow { transform: translateX(4px); }
+.btn-ghost {
+  color: var(--text); border: 1px solid var(--border); background: var(--surface);
+}
+.btn-ghost:hover { transform: translateY(-3px); background: var(--surface-2); border-color: rgba(34,211,238,0.4); }
+
+.hero-badges { display: flex; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
+.badge {
+  font-size: 0.82rem; padding: 7px 14px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--border); color: var(--text-dim);
+}
+
+/* ---------- Terminal ---------- */
+.terminal {
+  background: #0a0e16;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(34,211,238,0.06), 0 0 60px rgba(34,211,238,0.07);
+  font-family: var(--font-mono);
+  animation: float 7s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.terminal-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 16px; background: rgba(255,255,255,0.04);
+  border-bottom: 1px solid var(--border);
+}
+.t-dot { width: 12px; height: 12px; border-radius: 50%; }
+.t-dot.red { background: #ff5f57; } .t-dot.yellow { background: #febc2e; } .t-dot.green { background: #28c840; }
+.terminal-title { margin-left: 10px; font-size: 0.78rem; color: var(--text-dim); }
+
+.terminal-body {
+  padding: 18px; font-size: 0.82rem; line-height: 1.85;
+  min-height: 285px; color: #c3cbdc;
+}
+.terminal-body .t-line { opacity: 0; animation: t-appear 0.25s forwards; white-space: pre-wrap; }
+@keyframes t-appear { to { opacity: 1; } }
+.t-green { color: var(--accent-3); } .t-cyan { color: var(--accent); }
+.t-violet { color: var(--accent-2); } .t-dim { color: #5b6577; } .t-yellow { color: #fbbf24; }
+
+/* ---------- Scroll hint ---------- */
+.scroll-hint { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); }
+.mouse {
+  display: block; width: 24px; height: 38px; border: 2px solid var(--text-dim);
+  border-radius: 14px; position: relative;
+}
+.wheel {
+  position: absolute; left: 50%; top: 7px; width: 3px; height: 7px;
+  background: var(--accent); border-radius: 3px; transform: translateX(-50%);
+  animation: wheel 1.6s ease-in-out infinite;
+}
+@keyframes wheel { 0% { opacity: 1; top: 7px; } 100% { opacity: 0; top: 20px; } }
+
+/* ---------- Sections ---------- */
+.section { max-width: 1160px; margin: 0 auto; padding: 110px 24px 30px; }
+
+.section-tag {
+  font-family: var(--font-mono); color: var(--accent); font-size: 0.85rem;
+  letter-spacing: 2px; text-transform: uppercase;
+}
+.section-title {
+  font-family: var(--font-display); font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 700; margin-top: 10px; letter-spacing: -0.02em;
+}
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.section-head { margin-bottom: 48px; }
+
+/* ---------- Reveal animation ---------- */
+.reveal {
+  opacity: 0; transform: translateY(34px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ---------- About ---------- */
+.about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: start; }
+.about-text p { color: var(--text-dim); margin-bottom: 18px; font-size: 1.04rem; }
+.about-text strong { color: var(--text); }
+
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.stat {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 26px 20px; text-align: center;
+  transition: transform 0.3s, border-color 0.3s, background 0.3s;
+}
+.stat:hover { transform: translateY(-6px); border-color: rgba(34,211,238,0.45); background: var(--surface-2); }
+.stat-num {
+  display: block; font-family: var(--font-display); font-size: 2.5rem; font-weight: 700;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.stat-label { color: var(--text-dim); font-size: 0.86rem; }
+
+/* ---------- Skills ---------- */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.skill-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 26px; position: relative; overflow: hidden;
+  transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+}
+.skill-card::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(34,211,238,0.08), transparent 45%);
+  opacity: 0; transition: opacity 0.35s; pointer-events: none;
+}
+.skill-card:hover { transform: translateY(-7px); border-color: rgba(34,211,238,0.4); box-shadow: 0 18px 44px rgba(0,0,0,0.4); }
+.skill-card:hover::before { opacity: 1; }
+.skill-icon { font-size: 1.7rem; margin-bottom: 12px; display: inline-block; }
+.skill-card h3 { font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 14px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-size: 0.8rem; padding: 5px 12px; border-radius: 999px;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-dim);
+  transition: color 0.25s, border-color 0.25s, transform 0.25s;
+}
+.chip:hover { color: var(--text); border-color: rgba(34,211,238,0.5); transform: scale(1.06); }
+.chip-hot { color: var(--accent); border-color: rgba(34,211,238,0.35); background: rgba(34,211,238,0.07); }
+.chips.small .chip { font-size: 0.74rem; padding: 4px 10px; }
+
+/* ---------- Timeline ---------- */
+.timeline { position: relative; padding-left: 34px; }
+.timeline::before {
+  content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-2), transparent);
+  opacity: 0.5;
+}
+.timeline-item { position: relative; margin-bottom: 36px; }
+.timeline-dot {
+  position: absolute; left: -34px; top: 8px; width: 18px; height: 18px;
+  border-radius: 50%; background: var(--bg); border: 3px solid var(--accent);
+  box-shadow: 0 0 16px rgba(34,211,238,0.6);
+}
+.timeline-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 28px; transition: transform 0.35s, border-color 0.35s;
+}
+.timeline-card:hover { transform: translateX(8px); border-color: rgba(34,211,238,0.35); }
+.timeline-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.timeline-date { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent); }
+.timeline-loc { font-size: 0.82rem; color: var(--text-dim); }
+.timeline-card h3 { font-family: var(--font-display); font-size: 1.25rem; }
+.timeline-card h4 { font-weight: 500; color: var(--text-dim); margin: 4px 0 14px; font-size: 0.95rem; }
+.timeline-card h4 em { color: var(--accent-2); font-style: normal; }
+.timeline-card ul { list-style: none; margin-bottom: 16px; }
+.timeline-card li {
+  color: var(--text-dim); font-size: 0.94rem; padding-left: 20px; position: relative; margin-bottom: 8px;
+}
+.timeline-card li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); }
+.timeline-card li strong { color: var(--text); }
+
+/* ---------- Projects ---------- */
+.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.project-card {
+  position: relative; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 30px; overflow: hidden;
+  transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+}
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(167,139,250,0.45);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+.project-glow {
+  position: absolute; top: -60px; right: -60px; width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(167,139,250,0.22), transparent 70%);
+  border-radius: 50%; transition: transform 0.5s; pointer-events: none;
+}
+.project-card:hover .project-glow { transform: scale(1.6); }
+.project-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.project-icon { font-size: 2rem; }
+.project-badge {
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-2);
+  border: 1px solid rgba(167,139,250,0.4); padding: 4px 12px; border-radius: 999px;
+  background: rgba(167,139,250,0.08);
+}
+.project-card h3 { font-family: var(--font-display); font-size: 1.4rem; }
+.project-tagline { color: var(--accent); font-size: 0.92rem; margin: 6px 0 16px; font-family: var(--font-mono); }
+.project-points { list-style: none; margin-bottom: 18px; }
+.project-points li {
+  color: var(--text-dim); font-size: 0.92rem; padding-left: 20px; position: relative; margin-bottom: 9px;
+}
+.project-points li::before { content: "✓"; position: absolute; left: 0; color: var(--accent-3); }
+.project-points strong { color: var(--text); }
+.project-points em { color: var(--accent-2); font-style: normal; }
+.project-link {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 18px;
+  font-family: var(--font-mono); font-size: 0.85rem; font-weight: 600;
+  color: var(--accent); text-decoration: none;
+  padding: 9px 18px; border-radius: 10px;
+  border: 1px solid rgba(34,211,238,0.35); background: rgba(34,211,238,0.06);
+  transition: transform 0.25s, background 0.25s, box-shadow 0.25s;
+}
+.project-link:hover {
+  transform: translateY(-3px); background: rgba(34,211,238,0.14);
+  box-shadow: 0 8px 24px rgba(34,211,238,0.25);
+}
+.project-link:hover .btn-arrow { transform: translateX(4px); }
+
+/* ---------- Education ---------- */
+.edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.edu-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 28px; text-align: center;
+  transition: transform 0.35s, border-color 0.35s;
+}
+.edu-card:hover { transform: translateY(-6px); border-color: rgba(52,211,153,0.4); }
+.edu-icon { font-size: 2.2rem; display: block; margin-bottom: 14px; }
+.edu-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 8px; }
+.edu-card p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 12px; }
+.edu-date {
+  font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent);
+  border: 1px solid rgba(34,211,238,0.3); padding: 3px 12px; border-radius: 999px;
+}
+
+/* ---------- Contact ---------- */
+.contact { padding-bottom: 90px; }
+.contact-card {
+  text-align: center; padding: 70px 30px;
+  background: linear-gradient(180deg, rgba(34,211,238,0.05), rgba(167,139,250,0.05));
+  border: 1px solid var(--border); border-radius: 28px;
+  position: relative; overflow: hidden;
+}
+.contact-card::before {
+  content: ""; position: absolute; inset: -2px; z-index: -1; border-radius: 30px;
+  background: conic-gradient(from var(--angle, 0deg), transparent 60%, rgba(34,211,238,0.4), transparent 80%);
+  animation: rotate-border 6s linear infinite;
+}
+@property --angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes rotate-border { to { --angle: 360deg; } }
+.contact-sub { color: var(--text-dim); max-width: 520px; margin: 16px auto 34px; font-size: 1.05rem; }
+.contact-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.contact-loc { margin-top: 28px; color: var(--text-dim); font-size: 0.9rem; }
+
+/* ---------- Footer ---------- */
+.footer {
+  text-align: center; padding: 34px 24px; border-top: 1px solid var(--border);
+  color: var(--text-dim); font-size: 0.88rem;
+}
+.footer-mono { font-family: var(--font-mono); font-size: 0.78rem; margin-top: 6px; color: #5b6577; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 940px) {
+  .hero-content { grid-template-columns: 1fr; gap: 44px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .edu-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .nav-links {
+    position: fixed; top: var(--nav-h); right: 0; left: 0;
+    flex-direction: column; align-items: stretch; gap: 4px;
+    background: rgba(7,9,15,0.97); padding: 16px 24px 24px;
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-130%); transition: transform 0.35s ease;
+  }
+  .nav-links.open { transform: translateY(0); }
+  .nav-links a { display: block; text-align: center; padding: 12px; }
+  .nav-toggle { display: flex; }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .skills-grid { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .section { padding-top: 80px; }
+  .terminal-body { min-height: 240px; font-size: 0.74rem; }
+  .contact-card { padding: 50px 20px; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+</style>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="blob blob-1" aria-hidden="true"></div>
+  <div class="blob blob-2" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="logo"><span class="logo-bracket">&lt;</span>DC<span class="logo-bracket">/&gt;</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="top">
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-eyebrow reveal"><span class="status-dot"></span> Open to opportunities</p>
+        <h1 class="hero-title">
+          <span class="reveal">Hi, I'm</span>
+          <span class="hero-name reveal">Deven Choudhary</span>
+        </h1>
+        <h2 class="hero-role reveal">I <span class="typed" id="typed"></span><span class="typed-cursor">|</span></h2>
+        <p class="hero-sub reveal">SDET with <strong>2+ years</strong> building automation frameworks from scratch across <strong>fintech, banking, airline & CRM</strong> — now supercharging QA with <strong>AI-powered testing</strong>.</p>
+        <div class="hero-actions reveal">
+          <a href="#projects" class="btn btn-primary">View My Work <span class="btn-arrow">→</span></a>
+          <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+        <div class="hero-badges reveal">
+          <span class="badge">🏆 Sprint Shining Star</span>
+          <span class="badge">🌟 Client Pat-on-the-Back</span>
+        </div>
+      </div>
+
+      <!-- Animated terminal -->
+      <div class="terminal reveal" id="terminal">
+        <div class="terminal-bar">
+          <span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span>
+          <span class="terminal-title">deven@qa — npx playwright test</span>
+        </div>
+        <div class="terminal-body" id="terminal-body"></div>
+      </div>
+    </div>
+    <a href="#about" class="scroll-hint" aria-label="Scroll down"><span class="mouse"><span class="wheel"></span></span></a>
+  </header>
+
+  <main>
+    <!-- ============ ABOUT / STATS ============ -->
+    <section class="section" id="about">
+      <div class="section-head reveal">
+        <span class="section-tag">01 · About</span>
+        <h2 class="section-title">Quality is my <span class="grad-text">craft</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>I'm a results-driven <strong>SDET & Automation Engineer</strong> who has built <strong>Playwright (TypeScript)</strong> and <strong>Selenium (Java)</strong> suites from scratch — cutting manual regression effort and accelerating release cycles for enterprise clients.</p>
+          <p>I own the full test lifecycle: requirements analysis, test planning, framework architecture, and <strong>CI/CD integration</strong> with GitHub Actions and Jenkins. I actively leverage <strong>AI tools</strong> — GitHub Copilot, LLM-assisted test generation, MCP agents — to multiply coverage and productivity.</p>
+          <p>Recognised with the <strong>Sprint Shining Star Award</strong> and a direct <strong>client commendation</strong> from Post Office Limited (UK) for exceptional delivery.</p>
+        </div>
+        <div class="stats reveal">
+          <div class="stat"><span class="stat-num" data-count="2" data-suffix="+">0</span><span class="stat-label">Years Experience</span></div>
+          <div class="stat"><span class="stat-num" data-count="4" data-suffix="">0</span><span class="stat-label">Industry Domains</span></div>
+          <div class="stat"><span class="stat-num" data-count="3" data-suffix="+">0</span><span class="stat-label">Frameworks Built</span></div>
+          <div class="stat"><span class="stat-num" data-count="2" data-suffix="">0</span><span class="stat-label">Awards Won</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills">
+      <div class="section-head reveal">
+        <span class="section-tag">02 · Skills</span>
+        <h2 class="section-title">My testing <span class="grad-text">arsenal</span></h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-icon">⚙️</div>
+          <h3>Automation</h3>
+          <div class="chips">
+            <span class="chip chip-hot">Playwright (TS)</span><span class="chip chip-hot">Selenium WebDriver</span>
+            <span class="chip">TestNG</span><span class="chip">BDD / Cucumber</span><span class="chip">Page Object Model</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">💻</div>
+          <h3>Languages</h3>
+          <div class="chips">
+            <span class="chip chip-hot">TypeScript</span><span class="chip chip-hot">Java</span>
+            <span class="chip">JavaScript</span><span class="chip">MySQL</span><span class="chip">HTML / CSS</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🤖</div>
+          <h3>AI-Powered QA</h3>
+          <div class="chips">
+            <span class="chip chip-hot">MCP Agents</span><span class="chip chip-hot">LLM Test Generation</span>
+            <span class="chip">GitHub Copilot</span><span class="chip">Prompt Engineering</span><span class="chip">Intelligent Automation</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🔗</div>
+          <h3>API Testing</h3>
+          <div class="chips">
+            <span class="chip chip-hot">Postman</span><span class="chip chip-hot">Rest Assured</span>
+            <span class="chip">API Automation</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🚀</div>
+          <h3>CI/CD & DevOps</h3>
+          <div class="chips">
+            <span class="chip chip-hot">GitHub Actions</span><span class="chip chip-hot">Jenkins</span>
+            <span class="chip">Git / GitHub</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🧪</div>
+          <h3>Testing Types</h3>
+          <div class="chips">
+            <span class="chip">Functional</span><span class="chip">Regression</span><span class="chip">Smoke</span>
+            <span class="chip">E2E</span><span class="chip">UI</span><span class="chip">Manual</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section" id="experience">
+      <div class="section-head reveal">
+        <span class="section-tag">03 · Experience</span>
+        <h2 class="section-title">Where I've made an <span class="grad-text">impact</span></h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-meta"><span class="timeline-date">Mar 2026 — Present</span><span class="timeline-loc">Noida, India</span></div>
+            <h3>Junior Engineer — Automation</h3>
+            <h4>BusinessNext · <em>CRMNext (Enterprise CRM)</em></h4>
+            <ul>
+              <li>Leading automation for lead management, workflows & authentication modules of an enterprise CRM.</li>
+              <li>Designed Selenium regression suites, expanding automated coverage across critical modules.</li>
+              <li>Using AI-assisted tooling (Copilot, LLM prompting) to slash test-authoring time.</li>
+              <li>Full defect lifecycle ownership in Azure DevOps with complete traceability.</li>
+            </ul>
+            <div class="chips small"><span class="chip">Selenium</span><span class="chip">Java</span><span class="chip">Azure DevOps</span><span class="chip">AI Tooling</span></div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-meta"><span class="timeline-date">Jan 2025 — Nov 2025</span><span class="timeline-loc">Coforge Ltd</span></div>
+            <h3>Test Engineer — Switchfly</h3>
+            <h4>Airline Booking Platform (Multi-Client)</h4>
+            <ul>
+              <li>Built & owned an end-to-end Playwright (TypeScript) suite for a multi-client airline booking platform.</li>
+              <li>Adapted locators and test data across each client's UI variant — one suite, many configurations.</li>
+              <li>Closed automation gaps across client apps, directly reducing manual QA hours per release.</li>
+            </ul>
+            <div class="chips small"><span class="chip">Playwright</span><span class="chip">TypeScript</span><span class="chip">Smoke Testing</span></div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-meta"><span class="timeline-date">Jun 2024 — Dec 2024</span><span class="timeline-loc">Coforge Ltd</span></div>
+            <h3>Test Engineer — Post Office Ltd (UK)</h3>
+            <h4>Fintech / Banking Back-Office</h4>
+            <ul>
+              <li>Developed Playwright E2E scripts for a banking back-office web simulator.</li>
+              <li>Automated cash drawer handling, discrepancy resolution & pouch preparation — eliminating repetitive manual passes.</li>
+              <li>Used AI-assisted defect analysis to accelerate root-cause identification on regression failures.</li>
+              <li>🌟 Earned a client <strong>Pat-on-the-Back Award</strong> for exceptional work quality.</li>
+            </ul>
+            <div class="chips small"><span class="chip">Playwright</span><span class="chip">TypeScript</span><span class="chip">Banking</span><span class="chip">AI Defect Analysis</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="projects">
+      <div class="section-head reveal">
+        <span class="section-tag">04 · Projects</span>
+        <h2 class="section-title">Things I've <span class="grad-text">built</span></h2>
+      </div>
+      <div class="projects-grid">
+        <article class="project-card reveal">
+          <div class="project-glow"></div>
+          <div class="project-top">
+            <span class="project-icon">🧠</span>
+            <span class="project-badge">Featured</span>
+          </div>
+          <h3>QA Agent Platform</h3>
+          <p class="project-tagline">No-code test automation platform powered by LLMs</p>
+          <ul class="project-points">
+            <li>Fully no-code/low-code web platform — configure apps, generate test cases & trigger runs with <strong>zero scripting</strong>.</li>
+            <li>Bidirectional <strong>Jira integration</strong>: auto-created stories on generation, bugs raised with screenshots & logs on failure.</li>
+            <li>End-to-end AI flow: pulls Jira acceptance criteria → crawls the app headlessly → LLM produces structured, executable test cases.</li>
+            <li>Reporting dashboard with pass/fail trends, <strong>flakiness heatmaps</strong> & exportable reports.</li>
+          </ul>
+          <div class="chips small"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Playwright</span><span class="chip">Jira API</span><span class="chip">LLM</span></div>
+          <a href="https://github.com/deven037/qa-agent" target="_blank" rel="noopener" class="project-link">⭐ View Code on GitHub <span class="btn-arrow">→</span></a>
+        </article>
+        <article class="project-card reveal">
+          <div class="project-glow"></div>
+          <div class="project-top">
+            <span class="project-icon">⚡</span>
+            <span class="project-badge">Open Framework</span>
+          </div>
+          <h3>AI-Powered Playwright Framework</h3>
+          <p class="project-tagline">Hybrid UI + API framework with autonomous AI agents</p>
+          <ul class="project-points">
+            <li>Hybrid UI + API test layers on Playwright (TypeScript) with clean <strong>POM architecture</strong>, built for multi-team adoption.</li>
+            <li>Integrated <strong>MCP servers</strong> so AI agents can browse the app and autonomously generate contextual test scripts.</li>
+            <li>Full <strong>GitHub Actions CI/CD</strong>: suite runs on every PR, publishes HTML reports, notifies on failure.</li>
+            <li>AI-assisted defect classifier that triages failures as <em>flaky, env, or real bug</em>.</li>
+          </ul>
+          <div class="chips small"><span class="chip">Playwright</span><span class="chip">TypeScript</span><span class="chip">MCP</span><span class="chip">GitHub Actions</span><span class="chip">LLM</span></div>
+          <a href="https://github.com/deven037/playwright_ai" target="_blank" rel="noopener" class="project-link">⭐ View Code on GitHub <span class="btn-arrow">→</span></a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION & AWARDS ============ -->
+    <section class="section" id="education">
+      <div class="section-head reveal">
+        <span class="section-tag">05 · Background</span>
+        <h2 class="section-title">Education & <span class="grad-text">recognition</span></h2>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-card reveal">
+          <span class="edu-icon">🎓</span>
+          <h3>B.Tech, Computer Science</h3>
+          <p>Manav Rachna University</p>
+          <span class="edu-date">2020 — 2024</span>
+        </div>
+        <div class="edu-card reveal">
+          <span class="edu-icon">🏆</span>
+          <h3>Sprint Shining Star Award</h3>
+          <p>Recognised by leadership for outstanding sprint delivery & automation impact</p>
+          <span class="edu-date">Team Award</span>
+        </div>
+        <div class="edu-card reveal">
+          <span class="edu-icon">🌟</span>
+          <h3>Pat-on-the-Back Award</h3>
+          <p>Awarded directly by client (Post Office Ltd, UK) for exceptional quality & dedication</p>
+          <span class="edu-date">Client Award</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact">
+      <div class="contact-card reveal">
+        <span class="section-tag">06 · Contact</span>
+        <h2 class="section-title">Let's build <span class="grad-text">quality</span> together</h2>
+        <p class="contact-sub">Looking for an SDET who ships reliable automation and brings AI leverage to your QA process? Let's talk.</p>
+        <div class="contact-actions">
+          <a href="mailto:devenchoudhary037@gmail.com" class="btn btn-primary">📧 devenchoudhary037@gmail.com</a>
+          <a href="tel:+917011880118" class="btn btn-ghost">📱 +91 70118 80118</a>
+          <a href="https://linkedin.com/in/deven-choudhary-8b1b81235" target="_blank" rel="noopener" class="btn btn-ghost">💼 LinkedIn</a>
+          <a href="https://github.com/deven037" target="_blank" rel="noopener" class="btn btn-ghost">🐙 GitHub</a>
+        </div>
+        <p class="contact-loc">📍 Based in Gurugram, India · Open to roles in <strong>Gurugram · Delhi · Noida</strong> · Remote & hybrid friendly</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Designed & built by <strong>Deven Choudhary</strong> · © <span id="year"></span></p>
+    <p class="footer-mono">// tested in production, obviously ✅</p>
+  </footer>
+
+  <script>
+/* ============================================================
+   Deven Choudhary — Portfolio interactions
+   ============================================================ */
+
+// ---------- Typing effect ----------
+const roles = [
+  "automate everything.",
+  "build test frameworks from scratch.",
+  "break things before users do.",
+  "bring AI into QA.",
+  "ship with confidence.",
+];
+
+const typedEl = document.getElementById("typed");
+let roleIdx = 0, charIdx = 0, deleting = false;
+
+function typeLoop() {
+  const current = roles[roleIdx];
+  typedEl.textContent = current.slice(0, charIdx);
+
+  let delay = deleting ? 32 : 62;
+  if (!deleting && charIdx === current.length) {
+    delay = 2100; deleting = true;
+  } else if (deleting && charIdx === 0) {
+    deleting = false; roleIdx = (roleIdx + 1) % roles.length; delay = 420;
+  } else {
+    charIdx += deleting ? -1 : 1;
+  }
+  setTimeout(typeLoop, delay);
+}
+typeLoop();
+
+// ---------- Animated terminal ----------
+const terminalLines = [
+  { text: "$ npx playwright test --project=chromium", cls: "t-cyan", delay: 400 },
+  { text: "", delay: 250 },
+  { text: "Running 24 tests using 4 workers", cls: "t-dim", delay: 700 },
+  { text: "", delay: 200 },
+  { text: "  ✓  login › authenticates valid user (1.2s)", cls: "t-green", delay: 420 },
+  { text: "  ✓  booking › completes airline checkout (2.4s)", cls: "t-green", delay: 380 },
+  { text: "  ✓  cash-drawer › resolves discrepancy (1.8s)", cls: "t-green", delay: 400 },
+  { text: "  ✓  api › POST /bookings returns 201 (0.4s)", cls: "t-green", delay: 360 },
+  { text: "  ✓  crm › lead workflow end-to-end (3.1s)", cls: "t-green", delay: 420 },
+  { text: "  ✓  ai-agent › generates test from Jira story (2.7s)", cls: "t-violet", delay: 500 },
+  { text: "", delay: 250 },
+  { text: "  24 passed (18.3s)", cls: "t-green", delay: 500 },
+  { text: "", delay: 300 },
+  { text: "📊 HTML report published to CI artifacts", cls: "t-dim", delay: 450 },
+  { text: "🤖 AI classifier: 0 flaky · 0 env · 0 bugs", cls: "t-yellow", delay: 450 },
+  { text: "$ ready to ship 🚀", cls: "t-cyan", delay: 600 },
+];
+
+const termBody = document.getElementById("terminal-body");
+let termStarted = false;
+
+function runTerminal(idx = 0) {
+  if (idx >= terminalLines.length) {
+    setTimeout(() => { termBody.innerHTML = ""; runTerminal(0); }, 6000);
+    return;
+  }
+  const line = terminalLines[idx];
+  const div = document.createElement("div");
+  div.className = "t-line" + (line.cls ? " " + line.cls : "");
+  div.textContent = line.text || " ";
+  termBody.appendChild(div);
+  setTimeout(() => runTerminal(idx + 1), line.delay);
+}
+
+// ---------- Scroll reveal ----------
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
+
+        if (entry.target.id === "terminal" && !termStarted) {
+          termStarted = true;
+          setTimeout(() => runTerminal(), 500);
+        }
+        if (entry.target.classList.contains("stats")) animateCounters();
+      }
+    });
+  },
+  { threshold: 0.12 }
+);
+
+document.querySelectorAll(".reveal").forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 6) * 60}ms`;
+  revealObserver.observe(el);
+});
+
+// If the browser restored a scroll position, elements above the viewport
+// never intersect — reveal them immediately so nothing stays invisible.
+window.addEventListener("load", () => {
+  document.querySelectorAll(".reveal:not(.visible)").forEach((el) => {
+    if (el.getBoundingClientRect().bottom < 0) {
+      el.style.transitionDelay = "0ms";
+      el.classList.add("visible");
+      revealObserver.unobserve(el);
+      if (el.id === "terminal" && !termStarted) { termStarted = true; runTerminal(); }
+      if (el.classList.contains("stats")) animateCounters();
+    }
+  });
+});
+
+// ---------- Stat counters ----------
+let countersDone = false;
+function animateCounters() {
+  if (countersDone) return;
+  countersDone = true;
+  document.querySelectorAll(".stat-num").forEach((el) => {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || "";
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target) + (p === 1 ? suffix : "");
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+// ---------- Nav: scrolled state + progress bar ----------
+const nav = document.querySelector(".nav");
+const progress = document.querySelector(".scroll-progress");
+
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 20);
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+}, { passive: true });
+
+// ---------- Mobile menu ----------
+const toggle = document.querySelector(".nav-toggle");
+const links = document.querySelector(".nav-links");
+toggle.addEventListener("click", () => {
+  toggle.classList.toggle("open");
+  links.classList.toggle("open");
+});
+links.querySelectorAll("a").forEach((a) =>
+  a.addEventListener("click", () => {
+    toggle.classList.remove("open");
+    links.classList.remove("open");
+  })
+);
+
+// ---------- Cursor glow ----------
+const glow = document.querySelector(".cursor-glow");
+let glowX = innerWidth / 2, glowY = innerHeight / 3, targetX = glowX, targetY = glowY;
+
+window.addEventListener("pointermove", (e) => { targetX = e.clientX; targetY = e.clientY; }, { passive: true });
+
+(function glowLoop() {
+  glowX += (targetX - glowX) * 0.08;
+  glowY += (targetY - glowY) * 0.08;
+  glow.style.left = glowX + "px";
+  glow.style.top = glowY + "px";
+  requestAnimationFrame(glowLoop);
+})();
+
+// ---------- Skill card spotlight follows cursor ----------
+document.querySelectorAll(".skill-card").forEach((card) => {
+  card.addEventListener("pointermove", (e) => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty("--mx", e.clientX - rect.left + "px");
+    card.style.setProperty("--my", e.clientY - rect.top + "px");
+  });
+});
+
+// ---------- Footer year ----------
+document.getElementById("year").textContent = new Date().getFullYear();
+
+</script>
+</body>
+</html>
